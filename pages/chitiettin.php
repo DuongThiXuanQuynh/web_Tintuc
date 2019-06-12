@@ -56,7 +56,6 @@
 <div class="left"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background: transparent;"></div></div>
 
 <div class="clear"></div>
-<?php var_dump($ten, $email,$nd, $idTin)?>
 <div id="comment">
 	<fieldset>
     <legend>Comment </legend>
