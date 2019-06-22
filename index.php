@@ -118,6 +118,8 @@ if(isset($_POST["btnExit"])){
     </div>
     
      <div id="thongtin">
+         <div class="clear"></div>
+
     	<!--blocks/thongtindoanhnghiep.php-->
         <?php require "blocks/thongtindoanhnghiep.php";?>
     </div>

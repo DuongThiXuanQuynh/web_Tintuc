@@ -19,8 +19,6 @@ ul{ list-style:none}
 #phantrang a{ color:#000;background-color:#666 text-align:center; padding:5px; margin-right: 5px;
 	
 	}
-
-
 #wrap-vp{ width:1000px; margin:15px auto}
 #header-vp{ height:70px;}
 	#logo{ width:300px; float:left; margin-top:5px}
@@ -51,7 +49,7 @@ ul{ list-style:none}
 	#slideleft-scroll a{ color:#666}
 	
 #content-vp{}
-	#content-vp #content-left{border-right:solid 1px #E2E2E3; width:16%; float:left; padding: 5px; min-height:500px;}
+	#content-vp #content-left{border-right:solid 1px #E2E2E3; width:16%; float:left; padding: 5px; min-height:500px;height:auto}
 	#content-vp #content-main{border-right:solid 1px #E2E2E3; width:60%; float:left; padding: 5px; min-height:500px; margin: 0 0 0 5px; }
 	#content-vp #content-right{width:20%; float:left; padding: 5px; min-height:500px;}
 	

@@ -7,7 +7,7 @@
 	$tin = ChiTietTin($idTin);
 	$row_tin = mysqli_fetch_array($tin);
 	
-	$loi=array();
+	/*$loi=array();
 	$loi["ten"]=$loi["email"]=$loi["nd"]=NULL;
 	$ten=$email=$nd=NULL;
 	if(isset($_POST["post"])){
@@ -35,13 +35,33 @@
 		echo "alert('Bình luận của bạn đã được gửi thành công')";
 		echo"</script>";
 		}
-	}
+	}*/
 ?>
-	
-<h1 class="title"><?php echo $row_tin['TieuDe']?></h1>
-<div class="des">
-	<?php echo $row_tin['TomTat']?>
-</div>
+
+<script>
+	$(document).ready(function(){
+		$(".cmt_submit").click(function(){
+			t =$("#cmt_name").val();
+			e =$("#cmt_email").val();
+			nd =$("#cmt_content").val();
+			id = <?php echo $idTin;?>;
+			$.ajax({
+				url:"../jquery-slider-master/js/XuLyComment.php",
+				type:"POST",
+				data:"ten="+t+"&email="+e+"&nd="+nd+"&idTin="+id,
+				assync:true,
+				success:function(kq){
+					$("ul li:eq(0)").before(kq);
+				}
+				//return false;
+			/*$.post=("../jquery-slider-master/js/XuLyComment.php",{ten:t,email:e,nd:nd,idTin:id},function(data){
+				$(".cmt_submit").click(function){
+					$("ul li:eq(0)").before(data);*/
+			});
+			return false;
+		});
+	});
+</script>	
 <div class="chitiet">
 	<?php echo $row_tin['Content']?>
 </div>
@@ -63,27 +83,28 @@
         	<table>
   <tr>
     <td>Tên</td>
-    <td><input type="text" size="25" name="txtTen" value="<?php echo $loi["ten"]?>"/></td>
+    <td><input id="cmt_name" type="text" size="25" name="txtTen" placeholder="Name" value=""/></td>
   </tr>
   <tr>
     <td>Email</td>
-    <td><input type="text" size="25" name="txtEmail" value="<?php echo $loi["email"]?>"/></td>
+    <td><input id="cmt_email" type="text" size="25" name="txtEmail" placeholder="email" value=""/></td>
   </tr>
   <tr>
     <td>Nội dung</td>
-    <td><textarea cols="60" rows="5" name="txtND"><?php echo $loi["nd"]?></textarea></td>
+    <td><textarea id="cmt_content" cols="60" rows="5" placeholder="bình luận" name="txtND"></textarea></td>
   </tr>
   <tr>
   	<td></td>
-    <td><input type="submit" name="post" value="Gửi" />
+    <td><input class="cmt_submit" type="submit" name="post" value="Gửi" />
     </td>
     
   </tr>
 </table>
-
         </form>
     </fieldset>
+    
 </div>
+
 <div id="tincungloai">
 <div class="clear"></div>
 	<ul>
