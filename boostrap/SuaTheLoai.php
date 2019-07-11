@@ -117,6 +117,8 @@ if(isset($_POST["btnSua"])){
             <li><a href="./ListQuangCao.php">Quảng cáo</a></li>
             <li><a href="./ListBinhLuan.php">Bình luận</a></li>
           </ul>
+          </div>
+          </div>
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div class="row placeholders">
           	<a href="./ListTheLoai.php" class="btn btn-default">
