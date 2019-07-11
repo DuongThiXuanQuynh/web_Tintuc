@@ -79,6 +79,7 @@ include "../lb/quantri.php";
             <li><a href="./ListTinTuc.php">Tin tức</a></li>
             <li><a href="./ListQuangCao.php">Quảng cáo</a></li>
             <li><a href="./ListBinhLuan.php">Bình luận</a></li>
+            <li><a href="./Setting.php">Người dùng</a></li>
           </ul>
          </div>
          </div>

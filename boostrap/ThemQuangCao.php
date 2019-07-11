@@ -114,7 +114,7 @@ if(isset($_POST["btnThem"])){
           <ul class="nav navbar-nav navbar-right">
             <li><a href="./">Dashboard</a></li>
             <li><a href="./Setting.php">Settings</a></li>
-            <li><a href="./profile.php">Profile</a></li>
+            <li><a href="./profile.php?idUser=<?php echo $_SESSION['idUser']?>">Profile</a></li>
             <li><a href="./help.php">Help</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -128,25 +128,15 @@ if(isset($_POST["btnThem"])){
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li>
-          </ul>
-          <ul class="nav nav-sidebar">
             <li><a href="./">Trang chủ</a></li>
             <li><a href="./ListTheLoai.php">Thể loại</a></li>
             <li><a href="./ListLoaiTin.php">Loại tin</a></li>
             <li><a href="./ListTinTuc.php">Tin tức</a></li>
             <li><a href="./ListQuangCao.php">Quảng cáo</a></li>
             <li><a href="./ListBinhLuan.php">Bình luận</a></li>
+            <li><a href="./Setting.php">Người dùng</a></li>
           </ul>
-          <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
-            <li><a href="">Another nav item</a></li>
-          </ul>
-        </div>
+          </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <div class="row placeholders">
           	<a href="./ListQuangCao.php" class="btn btn-default">
