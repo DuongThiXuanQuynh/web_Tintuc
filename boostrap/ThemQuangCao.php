@@ -113,7 +113,7 @@ if(isset($_POST["btnThem"])){
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="./">Dashboard</a></li>
-            <li><a href="./Setting.php">Settings</a></li>
+            <li><a href="./Setting.php?idUser=<?php echo $_SESSION['idUser']?>">Settings</a></li>
             <li><a href="./profile.php?idUser=<?php echo $_SESSION['idUser']?>">Profile</a></li>
             <li><a href="./help.php">Help</a></li>
           </ul>

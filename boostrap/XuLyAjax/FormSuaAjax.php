@@ -6,7 +6,7 @@ require "../../lb/dbCon.php";
 // Xử lý các giả trị
     $Username = trim(htmlspecialchars(addslashes($_POST['Username'])));
     $HoTen = trim(htmlspecialchars(addslashes($_POST['HoTen'])));
-    $GioiTinh = $_POST['GioiTinh'];
+    $GioiTinh = trim(htmlspecialchars(addslashes($_POST['GioiTinh'])));
     $Dienthoai = trim(htmlspecialchars(addslashes($_POST['DienThoai'])));
     $NgaySinh = trim(htmlspecialchars(addslashes($_POST['NgaySinh'])));
     $DiaChi = trim(htmlspecialchars(addslashes($_POST['DiaChi'])));

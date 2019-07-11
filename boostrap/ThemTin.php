@@ -193,7 +193,7 @@ if(isset($_POST["btnThem"])){
               	<span class="glyphicon glyphicon-arrow-left"></span>Trở về</a>
           </div>
 
-          <h2 class="sub-header">Thông tin loại tin</h2>
+          <h2 class="sub-header">Thông tin bài viết</h2>
           <div class="table-responsive">
             <p class="form-edit-cate">
             <form method="POST" id="formThem" data-id="#" class="form-cate">

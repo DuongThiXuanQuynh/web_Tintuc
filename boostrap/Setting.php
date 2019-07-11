@@ -9,6 +9,8 @@ if(!isset($_SESSION["idUser"]) && $_SESSION["idGroup"]!=1 ){
 include "../lb/dbCon.php";
 include "../lb/quantri.php";
 
+$idUser = $_GET['idUser'];
+settype($idUser,"int");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +60,7 @@ include "../lb/quantri.php";
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="./">Dashboard</a></li>
-            <li><a href="./Setting.php">Settings</a></li>
+            <li><a href="./Setting.php?idUser=<?php echo $_SESSION['idUser']?>">Settings</a></li>
             <li><a href="./profile.php?idUser=<?php echo $_SESSION['idUser']?>">Profile</a></li>
             <li><a href="./help.php">Help</a></li>
           </ul>
@@ -87,9 +89,8 @@ include "../lb/quantri.php";
           <h1 class="page-header">NGƯỜI DÙNG</h1>
 
           <div class="row placeholders"> 
-              <a href="./ThemTin.php" class="btn btn-default"> <span class="glyphicon glyphicon-plus"></span>Thêm tài khoản</a> 
-              <a href="./Setting.php" class="btn btn-default"> <span class="glyphicon glyphicon-repeat"></span> Reload </a> 
-              <a class="btn btn-danger" id="delTin"> <span class="glyphicon glyphicon-trash"></span> Xoá </a> 
+              <a href="./ThemTaiKhoan1.php?idUser=<?php echo $_SESSION['idUser']?>" class="btn btn-default"> <span class="glyphicon glyphicon-plus"></span>Thêm tài khoản</a> 
+              <a href="./Setting.php?idUser=<?php echo $_SESSION['idUser']?>" class="btn btn-default"> <span class="glyphicon glyphicon-repeat"></span> Reload </a> 
            </div>
           <h2 class="sub-header">Danh sách tài khoản</h2>
           <?php
@@ -101,7 +102,6 @@ include "../lb/quantri.php";
             <table class="table table-striped"id="list">
               <thead>
                 <tr align="center">
-                  <th width="4%" valign="middle"><input type="checkbox" id="cbxAll"></th>
                   <th width="12%" valign="middle">Tên đăng nhập</th>
                   <th width="10%" valign="middle">Địa chỉ</th>
                   <th width="12%" valign="middle">Điện thoại</th>
@@ -119,7 +119,6 @@ include "../lb/quantri.php";
 			  ?>
                 
 		  <tr>
-          	<td align="left" valign="middle"><input type="checkbox" name="idUser" value="{idUser}" class="cbx"></td>
           	<td align="left" valign="middle">{Username}</td>
 			<td align="left" valign="middle">{DiaChi}</td>
 			<td align="left" valign="middle">{Dienthoai}</td>
@@ -128,9 +127,7 @@ include "../lb/quantri.php";
 			<td align="center" valign="middle">{idGroup}</td>
 			<td align="center" valign="middle">{Active}</td>
 			<td align="left" valign="middle"><a href="SuaTK.php?idUser={idUser}" class="btn btn-primary btn-sm">
-                        <span class="glyphicon glyphicon-edit"></span></a> 
-                  							<a onclick="return confirm('Bạn có chắc là muốn xóa không?')"href="XoaTK.php?idUser={idUser}"class="btn btn-danger btn-sm del-cate-list">
-                <span class="glyphicon glyphicon-trash"></span></a></td>
+                        <span class="glyphicon glyphicon-edit"></span></a> </td>
 		  </tr>
 		  <?php
 			$s = ob_get_clean();

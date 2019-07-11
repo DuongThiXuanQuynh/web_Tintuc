@@ -11,8 +11,6 @@ include "../lb/quantri.php";
 
 $idUser = $_GET['idUser'];
 settype($idUser,"int");
-$user = ThongTinUser($idUser);
-$row_user = mysqli_fetch_array($user);
 
 if(isset($_POST["btnThem"])){
 	$Username = $_POST["Username"];
@@ -25,9 +23,10 @@ if(isset($_POST["btnThem"])){
 	$Email = $_POST["Email"];
 	$idGroup = $_POST["idGroup"];
 	$Active = $_POST["Active"];
-	$qr = "inssert into users(HoTen, Username, Password, DiaChi, Dienthoai, Email, NgayDangKy, idGroup, NgaySinh, GioiTinh, Active) values ('$HoTen', '$Username', $Password,  '$DiaChi', '$Dienthoai','$Email', now(),$idGroup, '$NgaySinh', '$GioiTinh', '$Active'";
+	$qr = "insert into users values (null,'$HoTen', '$Username', $Password,  '$DiaChi', '$Dienthoai','$Email', now(),$idGroup, '$NgaySinh', '$GioiTinh', '$Active'";
 	mysqli_query($con,$qr);
-	header("location:profile.php?idUser=".$idUser);	
+	header("location:Setting.php?idUser=".$idUser);
+	
 }
 ?>
 <!DOCTYPE html>
@@ -78,7 +77,7 @@ if(isset($_POST["btnThem"])){
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a href="./">Dashboard</a></li>
-            <li><a href="./Setting.php">Settings</a></li>
+            <li><a href="./Setting.php?idUser=<?php echo $_SESSION['idUser']?>">Settings</a></li>
             <li><a href="./profile.php?idUser=<?php echo $_SESSION['idUser']?>">Profile</a></li>
             <li><a href="./help.php">Help</a></li>
           </ul>
@@ -104,11 +103,7 @@ if(isset($_POST["btnThem"])){
           </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class="page-header">Profile</h1>
-          <div class="row placeholders"> 
-          	  <a href="DoiMatKhau.php" class="btn btn-default"> <span class="glyphicon glyphicon-plus"></span>Thêm</a> 
-              <a href="ThemTaiKhoan1.php" class="btn btn-default"> <span class="glyphicon glyphicon-edit"></span>Đổi mật khẩu</a> 
-              <a href="./" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>Trở về</a>
-           </div>
+          
 		  <div class="panel panel-default">
             	<div class="panel-heading">Thông tin người dùng</div>
             		<div class="panel-body">
@@ -150,13 +145,15 @@ if(isset($_POST["btnThem"])){
                                 <label>Email</label>
                                 <input type="text" class="form-control" id="Email" >
                             </div>
+                            
                             <div class="form-group">
-                                <label>Ngày đăng ký</label>
-                                <input type="date" class="form-control" id="NgayDangKy" >
-                            </div>
-                            <div class="form-group">
-                                <label>Ngày đăng ký</label>
-                                <input type="date" class="form-control" id="NgayDangKy">
+                                <label>Active</label>
+                                <div class="radio">
+                                    <label><input  type="radio" name="Active" value="0" id="Active_0" />0</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input checked="checked" type="radio" name="Active" value="1" id="Active_1" />1</label>
+                                </div> 
                             </div>
                             <div class="form-group">
                                 <label>idGroup</label>

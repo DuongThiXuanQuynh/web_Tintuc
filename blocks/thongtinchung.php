@@ -1,4 +1,4 @@
-<div class="txt_timer left" id="clockPC">Thứ hai, 28/7/2014 | 09:55 GMT+7</div>	
+<div class="txt_timer left" id="clockPC">Thứ sáu, 12/7/2019 | 12:05 GMT+7</div>	
              <div class="left">
                 
              </div>
