@@ -1,23 +1,14 @@
 <?php
-	$con=mysqli_connect("localhost","root","","webtintuc");
-
-	$ten=$_POST["ten"];
-	$email=$_POST["email"];
-	$nd=$_POST["nd"];
-	$idTin=$_POST["idTin"];
-	$qr = "INSERT INTO comment(hoten, ThoiGian, email, noidung, idTin) VALUES ('$ten',now(),'$email','$nd','$idTin')
-		";
-		mysqli_query($con, $qr);
+	//$con=mysqli_connect("localhost","root","","webtintuc");
+	include "../../lb/dbCon.php";
+	$idTin = isset($_POST['idTin']) ? $_POST['idTin'] : "";
+	$nd = isset($_POST['nd']) ? $_POST['nd'] : "";
+	$ten = isset($_POST['ten']) ? $_POST['ten'] : "";
+	$qr = "INSERT INTO comment(Ten, ThoiGian, NoiDung, idTin) VALUES ('" . $ten . "',now(),'" . $nd . "','" . $idTin . "')";
+	$q = mysqli_query($con, $qr);
+	if($q==true){
+		echo "sucessfull!";
 		
-		var_dump($ten, $email,$nd, $idTin);
-		echo $ten;
-	/*echo"<li>";
-		echo"<img src='../../images/avartar.png' width='48' height='48'/>";
-		echo"<div>";
-			echo"<b>$ten</b><small>".date('dd/mm/yyyy')."</small>";
-			echo"<p> $nd</p>";
-			echo"<a href='#'>reply</a>";
-		echo"</div>";
-	
-	echo"</li>";*/	
+	}else
+		echo "Fail.Try again!";
 ?>

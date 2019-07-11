@@ -46,8 +46,8 @@ if(isset($_POST["btnThem"])){
         </tr>
         <tr>
           <td width="80">TenTL</td>
-          <td width="604"><label for="TenTL2"></label>
-            <input type="text" name="TenTL" id="TenTL2" /></td>
+          <td width="604"><label for="TenTL"></label>
+            <input type="text" name="TenTL" id="TenTL" /></td>
         </tr>
         <tr>
           <td>ThuTu</td>

@@ -23,18 +23,18 @@ require "../lb/quantri.php";
   <tr>
     <td height="40" id="hang2"><?php require"menu.php"?></td>
   </tr>
-  <tr>
+  <tr align="center">
     <td><table width="700" border="1">
-      <tr>
+      <tr align="center" valign="middle">
         <td colspan="6">DANH SÁCH THỂ LOẠI</td>
         </tr>
-      <tr>
+      <tr align="center" valign="middle">
         <td>idTL</td>
-        <td>TenTL</td>
-        <td>TenTL_KhongDau</td>
-        <td>ThuTu</td>
-        <td>AnHien</td>
-        <td><a href="ThemTheLoai.php">Them</a></td>
+        <td>Tên thể loại</td>
+        <td>Tên thể loại không dấu</td>
+        <td>Thứ tự</td>
+        <td>Ẩn hiện</td>
+        <td><a href="ThemTheLoai.php">Thêm</a></td>
       </tr>
       <?php
 	  $theloai = DanhSachTheLoai();
@@ -47,7 +47,7 @@ require "../lb/quantri.php";
         <td>{TenTL_KhongDau}</td>
         <td>{ThuTu}</td>
         <td>{AnHien}</td>
-        <td><a href="SuaTheLoai.php?idTL={idTL}">Sua</a> - <a onclick="return confirm('Bạn co chắc là muốn xóa không?')"href="XoaTheLoai.php?idTL={idTL}">Xoa</a></td>
+        <td><a href="SuaTheLoai.php?idTL={idTL}">Sửa</a> - <a onclick="return confirm('Bạn co chắc là muốn xóa không?')"href="XoaTheLoai.php?idTL={idTL}">Xóa</a></td>
       </tr>
       <?php
 	  	$s= ob_get_clean();

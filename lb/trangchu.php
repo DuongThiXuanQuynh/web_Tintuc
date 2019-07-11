@@ -43,7 +43,7 @@
 	function QuangCao($Vitri){
 		$con=mysqli_connect("localhost","root","","webtintuc");
 		mysqli_set_charset($con, 'UTF8');
-		$qr="select * from quangcao where vitri = $Vitri";
+		$qr="select * from quangcao where vitri = $Vitri order by idQC limit 0,3";
 		return mysqli_query($con,$qr);
 			}
 	function DanhSachTheLoai(){
@@ -94,10 +94,10 @@
 		}
 	function CapNhatSoLanXemTin($idTin){
 		$con=mysqli_connect("localhost","root","","webtintuc");
-		$qr=" update Tin
+		$qr=" update tin
 				set SoLanXem = SoLanXem +1
 				where idTin = $idTin";	
-		mysqli_query($con, $qr);
+		 mysqli_query($con, $qr);
 	}
 	function TimKiem($TuKhoa){
 		$con=mysqli_connect("localhost","root","","webtintuc");
@@ -115,4 +115,10 @@
 		";
 		return mysqli_query($con, $qr);
 	}
+	function DanhSachCmt($idTin){
+	include "dbCon.php";
+	$qr = "select * from comment where idTin='$idTin' order by idCmt desc";
+	return mysqli_query($con, $qr);	
+}
+
 ?>

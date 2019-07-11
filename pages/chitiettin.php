@@ -1,71 +1,46 @@
 <?php 
 	if(isset($_GET["idTin"])){
 		$idTin = $_GET["idTin"];
+		settype($idTin,"int");
 	}
 	else $idTin = 1;
 	CapNhatSoLanXemTin($idTin);
 	$tin = ChiTietTin($idTin);
 	$row_tin = mysqli_fetch_array($tin);
 	
-	/*$loi=array();
-	$loi["ten"]=$loi["email"]=$loi["nd"]=NULL;
-	$ten=$email=$nd=NULL;
-	if(isset($_POST["post"])){
-		//kt co nhap ten chua
-		if(empty($_POST["txtTen"])){
-			$loi["ten"]="Xin vui lòng nhập tên";
-		}else{
-			$ten=$_POST["txtTen"];
-		}
-		//kt co nhap email chua
-		if(empty($_POST["txtEmail"])){
-			$loi["email"]="Xin vui lòng nhập email";
-		}else{
-			$email=$_POST["txtEmail"];
-		}
-		//ktco nhap  nd chua
-		if(empty($_POST["txtND"])){
-			$loi["nd"]="Xin vui lòng nhập nội dung";
-		}else{
-			$nd=$_POST["txtND"];
-		}
-		if($ten && $email && $nd){
-		$binhluan= ThemBinhLuan($ten,$email,$nd,$idTin);
-		echo "<script type ='text/javascript'>";
-		echo "alert('Bình luận của bạn đã được gửi thành công')";
-		echo"</script>";
-		}
-	}*/
 ?>
-
+<head>
+<style type="text/css">
+<!--
+#cmt{padding:5px;background-color: rgba(34,34,34,.05);}
+.cmt_content{margin-top: 6px;}
+.cmt_submit{border-radius: 2px; background-color: #e32; padding: 8px 12px;font-size: 13px; margin-top: 6px;}
+#ndCmt{margin-top:10px}
+.ten_cmt{font: bold 14px Roboto;color: #e32;margin-bottom: 3px}
+-->
+</style>
+<script type="text/javascript" src="jquery-slider-master/js/jquery-3.2.1.min.js"></script>
 <script>
 	$(document).ready(function(){
 		$(".cmt_submit").click(function(){
-			t =$("#cmt_name").val();
-			e =$("#cmt_email").val();
-			nd =$("#cmt_content").val();
-			id = <?php echo $idTin;?>;
-			$.ajax({
-				url:"../jquery-slider-master/js/XuLyComment.php",
-				type:"POST",
-				data:"ten="+t+"&email="+e+"&nd="+nd+"&idTin="+id,
-				assync:true,
-				success:function(kq){
-					$("ul li:eq(0)").before(kq);
-				}
-				//return false;
-			/*$.post=("../jquery-slider-master/js/XuLyComment.php",{ten:t,email:e,nd:nd,idTin:id},function(data){
-				$(".cmt_submit").click(function){
-					$("ul li:eq(0)").before(data);*/
+			var t =$("#cmt_name").val();
+			var nd =$("#cmt_content").val();
+			var id =$("#idtin").val();
+			$.post("jquery-slider-master/js/XuLyComment.php",{ten:t,nd:nd,idTin:id},function(data){
+				$("#tb").html(data);
+				$.post("jquery-slider-master/js/ListCmt.php",function(result){
+				$("#kq").html(result);	
+				});
+			
 			});
-			return false;
 		});
 	});
-</script>	
+</script>
+</head>
+<body>	
 <div class="chitiet">
 	<?php echo $row_tin['Content']?>
-</div>
-<div class="clear"></div>
+</div><div class="clear"></div>
 <a class="btn_quantam" id="vne-like-anchor-1000000-3023795" href="#" total-like="21"></a>
 <div class="number_count"><span id="like-total-1000000-3023795"><?php echo $row_tin['SoLanXem']?></span></div>
 <!--face-->
@@ -77,34 +52,51 @@
 
 <div class="clear"></div>
 <div id="comment">
-	<fieldset>
-    <legend>Comment </legend>
-    	<form action="index.php?p=chitiettin&idTin=<?php echo $row_tin['idTin']?>" method="post">
+    	<form id="cmt" action="#" method="post">
         	<table>
+            <tr>
+                <td><input id="idtin" type="hidden"  value="<?php echo $idTin;?> "/></td>
+            </tr>
   <tr>
     <td>Tên</td>
-    <td><input id="cmt_name" type="text" size="25" name="txtTen" placeholder="Name" value=""/></td>
-  </tr>
-  <tr>
-    <td>Email</td>
-    <td><input id="cmt_email" type="text" size="25" name="txtEmail" placeholder="email" value=""/></td>
+    <td><input id="cmt_name" type="text" size="62" name="txtTen" placeholder="Tên" value="" /></td>
   </tr>
   <tr>
     <td>Nội dung</td>
-    <td><textarea id="cmt_content" cols="60" rows="5" placeholder="bình luận" name="txtND"></textarea></td>
+    <td><textarea id="cmt_content" cols="65" rows="5" placeholder="Viết bình luận của bạn" name="txtND" ></textarea></td>
   </tr>
   <tr>
   	<td></td>
-    <td><input class="cmt_submit" type="submit" name="post" value="Gửi" />
-    </td>
-    
+    <td><input class="cmt_submit" type="button" name="post" value="Gửi bình luận" /> </td>
+    <div id="tb"></div>
   </tr>
 </table>
         </form>
-    </fieldset>
     
 </div>
-
+<div id="kq"></div>
+<div>
+    <?php
+	$cmt = DanhSachCmt($idTin);
+	while($rowCmt = mysqli_fetch_array($cmt)){
+	?>
+      <table width="550" border="0">
+        <tr>
+          <td width="54" rowspan="3"><img src="images/avartar_cmt.jpg" width="50"></td>
+          <td style="font: bold 14px ;color: #e32;" id='ten_cmt' width="486"><?php echo $rowCmt["Ten"]?></td>
+        </tr>
+        <tr>
+          <td ><?php echo $rowCmt["NoiDung"]?></td>
+        </tr>
+        <tr>
+          <td><small><?php echo $rowCmt["ThoiGian"]?> <a href="jquery-slider-master/js/XoaCmt.php?idCmt=<?php $rowCmt["idCmt"] ?>&idTin=<?php echo $idTin;?>" id="xoa">Xóa</a></small></td>
+        </tr>
+      </table>
+      
+      <?php
+	}
+	  ?>
+    </div>  
 <div id="tincungloai">
 <div class="clear"></div>
 	<ul>
@@ -125,7 +117,8 @@
 </div>
 <div class="clear"></div> 
 
-
+</span>
+</body>
 
 
 

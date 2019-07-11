@@ -1,5 +1,5 @@
 <?php
-$idLT=5;
+$idLT = rand(1,27);
 ?>
 
 <div class="box-cat">

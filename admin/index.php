@@ -22,11 +22,15 @@ require "../lb/quantri.php";
     <td id="hangTieuDe">TRANG QUẢN TRỊ</td>
   </tr>
   <tr>
-    <td height="40" id="hang2"><?php require"menu.php"?></td>
+    <td height="40" id="hang2"><p>
+      <?php require"menu.php"?>
+    </p>
+    <p>&nbsp; </p></td>
   </tr>
   <tr>
-    <td>&nbsp;</td>
+    <td height="40" id="hang6">&nbsp;</td>
   </tr>
 </table>
+<p>&nbsp;</p>
 </body>
 </html>
